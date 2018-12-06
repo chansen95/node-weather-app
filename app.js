@@ -1,9 +1,25 @@
 const request = require('request');
+const yargs = require('yargs');
 
 const API_KEY = 'AIzaSyB-qWzyzKwSgcvAwJHE8F3lI_WyM1O26T0'
 
+const argv = yargs
+.options({
+    a: {
+        demand: true,
+        alias: 'address',
+        describe: 'Address to fetch weather for',
+        string: true
+    }
+})
+.help()
+.alias('help', 'h')
+.argv;
+
+const encodedAddress = encodeURIComponent(argv.a);
+
 request({
-    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=1301%20lomabard%20street%20philadelphia&key=' + API_KEY,
+    url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${API_KEY}`,
     json: true
 }, (error, response, body) => {
     console.log(`Address: ${body.results[0].formatted_address}`);
