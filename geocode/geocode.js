@@ -1,6 +1,6 @@
 const request = require('request');
 
-const API_KEY = 'AIzaSyB-qWzyzKwSgcvAwJHE8F3lI_WyM1O26T0'
+const API_KEY = 'AIzaSyB-qWzyzKwSgcvAwJHE8F3lI_WyM1O26T0';
 
 let geocodeAddress = (address, callback) => {
     var encodedAddress = encodeURIComponent(address);
